@@ -31,7 +31,11 @@ KCP Server: ./server_linux_amd64 -t "TARGET_IP:8388" -l ":4000" -mode fast2
 ```
 The above commands will establish port forwarding for 8388/tcp as:
 
-Application -> KCP Client(8388/tcp) -> KCP Server(4000/udp) -> Server(8388/tcp) 
+> Application -> **KCP Client(8388/tcp) -> KCP Server(4000/udp)** -> Target Server(8388/tcp) 
+
+Tunnels the original connection:
+
+> Application -> Target Server(8388/tcp) 
 
 ### Install from source
 
@@ -52,7 +56,8 @@ All precompiled releases are genereated from `build-release.sh` script.
 
 > **Q: I have a high speed network link, how to reach the maximum bandwidth?**        
 
-> **A:** Increase `-rcvwnd` on KCP Client and `-sndwnd` on KCP Server **simultaneously & gradually**, the mininum one decides the maximum transfer rate of the link, as `wnd * mtu / rtt`; Then try downloading something and to see if it meets your requirements.
+> **A:** Increase `-rcvwnd` on KCP Client and `-sndwnd` on KCP Server **simultaneously & gradually**, the mininum one decides the maximum transfer rate of the link, as `wnd * mtu / rtt`; Then try downloading something and to see if it meets your requirements. 
+(mtu is adjustable by `-mtu`)
 
 #### Improving Latency
 
@@ -154,7 +159,7 @@ It is able to detect and correct multiple symbol errors. By adding t check symbo
 
 ![reed-solomon](rs.png)
 
-Setting parameters of RS-Code with ```-datashard m -parityshard n``` on both KCP Client & KCP Server.
+Setting parameters of RS-Code with ```-datashard m -parityshard n``` on **BOTH** KCP Client & KCP Server **MUST** be **IDENTICAL**.
 
 #### DSCP
 
@@ -212,7 +217,7 @@ kcptun has builtin snappy algorithms for compressing streams:
 
 Compression may save bandwidth for **PLAINTEXT** data, such as HTTP data.
 
-Compression is enabled by default, you can disable it by setting ```-nocomp``` on both KCP Client & KCP Server.
+Compression is enabled by default, you can disable it by setting ```-nocomp``` on **BOTH** KCP Client & KCP Server **MUST** be **IDENTICAL**.
 
 #### SNMP
 
@@ -254,6 +259,17 @@ https://github.com/skywind3000/kcp/blob/master/README.en.md#protocol-configurati
 
 Low-level KCP configuration can be altered by using manual mode like above, make sure you really **UNDERSTAND** what these means before doing **ANY** manual settings.
 
+
+### Identical Parmeters
+
+The parameters below **MUST** be **IDENTICAL** on **BOTH** side:
+
+1. -key
+1. -crypt
+1. -nocomp
+1. -datashard
+1. -parityshard
+
 ### References
 
 1. https://github.com/skywind3000/kcp -- KCP - A Fast and Reliable ARQ Protocol.
@@ -272,3 +288,9 @@ Low-level KCP configuration can be altered by using manual mode like above, make
 1. http://www.lartc.org/ -- Linux Advanced Routing & Traffic Control
 1. https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem -- Noisy channel coding theorem
 1. https://play.google.com/store/apps/details?id=com.k17game.k3 -- Battle Zone - Earth 2048, an online strategy game using kcp.
+
+Donate via bitcoin:
+
+![wallet](wallet.png)
+
+bitcoin: 1Bfr3HPr6XxZPWji1EKEUMMq2FZLbmuX34
