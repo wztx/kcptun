@@ -21,6 +21,8 @@
 
 <img src="kcptun.png" alt="kcptun" height="300px"/>
 
+> *kcptun maintains a single website — [github.com/xtaci/kcptun](https://github.com/xtaci/kcptun). Any websites other than [github.com/xtaci/kcptun](https://github.com/xtaci/kcptun) are not endorsed by xtaci. kcptun won't publish anything on any social media.*
+
 ### QuickStart
 
 Download precompiled [Releases](https://github.com/xtaci/kcptun/releases).
@@ -289,8 +291,10 @@ The parameters below **MUST** be **IDENTICAL** on **BOTH** side:
 1. https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem -- Noisy channel coding theorem
 1. https://play.google.com/store/apps/details?id=com.k17game.k3 -- Battle Zone - Earth 2048, an online strategy game using kcp.
 
-Donate via bitcoin:
+Donate via ETH:
 
-![wallet](wallet.png)
+Address: 0x2e4b43ab3d0983da282592571eef61ae5e60f726
 
-bitcoin: 1Bfr3HPr6XxZPWji1EKEUMMq2FZLbmuX34
+QR Code:
+
+![ETH](0x2e4b43ab3d0983da282592571eef61ae5e60f726.png)
